@@ -50,9 +50,9 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         //startActivity(Intent(this, ArticleDetailActivity::class.java))
-        val btn: Button = findViewById(R.id.button)
-        btn.setOnClickListener({ _ ->
-            startActivity(Intent(this, ArticleDetailActivity::class.java))
-        })
+//        val btn: Button = findViewById(R.id.button)
+//        btn.setOnClickListener({ _ ->
+//            startActivity(Intent(this, ArticleDetailActivity::class.java))
+//        })
     }
 }
