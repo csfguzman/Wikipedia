@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "317061496228",
+    "firebase_url": "https://wikipedia-app1.firebaseio.com",
+    "project_id": "wikipedia-app1",
+    "storage_bucket": "wikipedia-app1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317061496228:android:3a0372ba4e3ad1fba89531",
+        "android_client_info": {
+          "package_name": "com.example.wikipedia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317061496228-taeb3i7a7qf2paoo0k2jvlndi910256u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wikipedia",
+            "certificate_hash": "02303aa2e366368c09205f9e8e8c6e97242d84b8"
+          }
+        },
+        {
+          "client_id": "317061496228-ovru58to87vl0e0il3d6m65dt8823khi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB--dw4OcXLypL2WP2NoK39-HiALw8czEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317061496228-ovru58to87vl0e0il3d6m65dt8823khi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
