@@ -2,7 +2,7 @@
 
 https://github.com/csfguzman/Wikipedia
 
-Group: 
+Group: Random Name Generator
 
 Francisco Guzman - GitHub Username: csfguzman
 
