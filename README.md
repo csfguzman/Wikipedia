@@ -2,9 +2,9 @@
 
 https://github.com/csfguzman/Wikipedia
 
-Group: Random Name Generator
+#### Group: Random Name Generator
 
-| Name | GitHub Username |
+| Team Members | GitHub Username |
 | ------ | ------ |
 | Francisco Guzman | csfguzman |
 | Klaudia Hernandez | khern19 |
