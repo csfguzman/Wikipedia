@@ -22,5 +22,8 @@
 * Users will be able to search up specific articles
 * As the user are typing in the article, they will be given sugesstions of the possible article they are looking for
 
+## Favorites
+* 
+
 ## Sources
-[Connecting Firebase to Android App](https://firebase.google.com/docs/android/setup?authuser=0#console) 
+- [Connecting Firebase to Android App](https://firebase.google.com/docs/android/setup?authuser=0#console) 
