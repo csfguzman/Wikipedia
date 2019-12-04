@@ -11,7 +11,7 @@
 ## What is the Wiki App?
 * The wiki app is an extension of the wikipedia webpage 
 
-## Wiki App Functionalities
+## Wiki App Main Functionalities
 * Search articles
 * Favorite artices
 * Recieve push notifications
