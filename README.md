@@ -1,11 +1,26 @@
 # Wiki App
 
-https://github.com/csfguzman/Wikipedia
+#### Group: Random Name Generator
 
-Group: 
+| Team Members | GitHub Username |
+| ------ | ------ |
+| Francisco Guzman | csfguzman |
+| Klaudia Hernandez | khern19 |
+| Andrew Garcia | agarcia94 |
 
-Francisco Guzman - GitHub Username: csfguzman
+## What is the Wiki App?
+* The wiki app is an extension of the wikipedia webpage 
 
-Klaudia Hernandez - GitHub Username: khern19
+## Wiki App Functionalities
+* Search articles
+* Favorite artices
+* Recieve push notifications
+* View history
+* Text to speech
 
-Andrew Garcia - GitHub Username: agarcia94
+## Search Bar
+* Users will be able to search up specific articles
+* As thay are typing in the article, users will be given sugesstions of teh possible article they are looking for
+
+## Sources
+[Connecting Firebase to Android App](https://firebase.google.com/docs/android/setup?authuser=0#console) 
