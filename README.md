@@ -1,7 +1,5 @@
 # Wiki App
 
-https://github.com/csfguzman/Wikipedia
-
 #### Group: Random Name Generator
 
 | Team Members | GitHub Username |
@@ -14,8 +12,15 @@ https://github.com/csfguzman/Wikipedia
 * The wiki app is an extension of the wikipedia webpage 
 
 ## Wiki App Functionalities
-* Allows users to search up specific articles
-* Allows users to favorite artices
-* Based on favorites users will recieve push notifications with recommended articles
-* Users will be able to view their history ob articles the clicked on
-* The app will be able to use text to speech
+* Search articles
+* Favorite artices
+* Recieve push notifications
+* View history
+* Text to speech
+
+## Search Bar
+* Users will be able to search up specific articles
+* As thay are typing in the article, users will be given sugesstions of teh possible article they are looking for
+
+##Sources
+[Adding Firebase](https://firebase.google.com/docs/android/setup?authuser=0#console) 
