@@ -22,5 +22,5 @@
 * Users will be able to search up specific articles
 * As thay are typing in the article, users will be given sugesstions of teh possible article they are looking for
 
-##Sources
+## Sources
 [Adding Firebase](https://firebase.google.com/docs/android/setup?authuser=0#console) 
