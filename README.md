@@ -31,5 +31,12 @@
 ## Push Notifications
 * Based on favorites, users will recieve notifications of articles that are similar that they might like
 
+## History
+* When clicking onto an article it will be saved into the user's history
+* The user will be able to delete their history
+
+## Text to Speech
+* User may enable text to speech to listen to the artice instead of reading it themselves
+
 ## Sources
 - [Connecting Firebase to Android App](https://firebase.google.com/docs/android/setup?authuser=0#console) 
