@@ -2,6 +2,7 @@ package com.example.wikipedia.holders
 
 //import android.support.v7.widget.RecyclerView
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -23,6 +24,8 @@ class CardHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.setOnClickListener { view: View? ->
             var detailPageIntent = Intent(itemView.context, ArticleDetailActivity::class.java)
             var pageJson = Gson().toJson(currentPage)
+
+            Log.i("pageJson", pageJson)
             detailPageIntent.putExtra("page", pageJson)
             itemView.context.startActivity(detailPageIntent)
         }
