@@ -15,13 +15,22 @@
             android:layout_width="match_parent"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
+        <Button
+            android:id="@+id/speak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Speak" />
+
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <WebView
         android:id="@+id/article_detail_webview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+    </WebView>
 
     <ProgressBar
         android:id="@+id/page_progress_bar"
