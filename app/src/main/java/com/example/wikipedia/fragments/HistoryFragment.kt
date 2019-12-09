@@ -4,13 +4,14 @@ package com.example.wikipedia.fragments
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 import com.example.wikipedia.R
 import com.example.wikipedia.WikiApplication
 import com.example.wikipedia.activities.adapters.ArticleListItemRecyclerAdapter
+import com.example.wikipedia.databinding.FragmentHistoryBinding
 import com.example.wikipedia.managers.WikiManager
 import com.example.wikipedia.models.WikiPage
 import org.jetbrains.anko.alert
@@ -22,13 +23,13 @@ import org.jetbrains.anko.yesButton
  * A simple [Fragment] subclass.
  */
 class HistoryFragment : Fragment() {
+    private lateinit var binding: FragmentHistoryBinding
 
     private var wikiManager: WikiManager? = null
-    var historyRecycler: RecyclerView? = null
     private val adapter = ArticleListItemRecyclerAdapter()
 
     init{
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true)
     }
 
     override fun onAttach(context: Context?) {
@@ -37,15 +38,15 @@ class HistoryFragment : Fragment() {
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view = inflater!!.inflate(R.layout.fragment_history, container, false)
 
-        historyRecycler = view.findViewById<RecyclerView>(R.id.history_article_recycler)
+        binding = DataBindingUtil.inflate<FragmentHistoryBinding>(inflater, R.layout.fragment_history, container, false)
 
-        historyRecycler!!.layoutManager = LinearLayoutManager(context)
-        historyRecycler!!.adapter = adapter
+        binding.historyArticleRecycler!!.layoutManager = LinearLayoutManager(context)
+        binding.historyArticleRecycler!!.adapter = adapter
 
-        return view
+
+        //return view
+        return binding.root
     }
 
     override fun onResume(){
