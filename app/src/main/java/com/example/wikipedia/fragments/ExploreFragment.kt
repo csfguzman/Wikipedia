@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -80,6 +81,12 @@ class ExploreFragment : Fragment() {
             wikiManager?.getRandom(15, { wikiResult ->
                 adapter.currentResults.clear()
                 adapter.currentResults.addAll(wikiResult.query!!.pages)
+
+                wikiResult.query!!.pages.get(0).categories?.forEach{
+                    Log.i("currentCategory", it.title)
+                }
+
+//                Log.i("categoryTotal", wikiResult.query!!.pages.get(0).categories?.get(0)?.title)
                 activity?.runOnUiThread {
                     adapter.notifyDataSetChanged()
                     refresher?.isRefreshing = false

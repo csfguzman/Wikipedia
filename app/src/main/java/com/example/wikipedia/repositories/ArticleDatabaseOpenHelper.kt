@@ -10,16 +10,18 @@ class ArticleDatabaseOpenHelper(context: Context) : ManagedSQLiteOpenHelper(cont
     override fun onCreate(db: SQLiteDatabase?) {
         // define the tables in this database
         db?.createTable("Favorites", true,
-            "id" to INTEGER + PRIMARY_KEY,
+            "id" to INTEGER,
             "title" to TEXT,
             "url" to TEXT,
-            "thumbnailJson" to TEXT)
+            "thumbnailJson" to TEXT,
+            "category" to TEXT)
 
         db?.createTable("History", true,
-            "id" to INTEGER + PRIMARY_KEY,
+            "id" to INTEGER,
             "title" to TEXT,
             "url" to TEXT,
-            "thumbnailJson" to TEXT)
+            "thumbnailJson" to TEXT,
+            "category" to TEXT)
 
     }
 
