@@ -1,5 +1,7 @@
 package com.example.wikipedia.repositories
 
+import android.util.Log
+import com.example.wikipedia.models.Category
 import com.example.wikipedia.models.WikiPage
 import com.example.wikipedia.models.WikiThumbnail
 import com.google.gson.Gson
@@ -13,12 +15,17 @@ class HistoryRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
     private val TABLE_NAME: String = "History"
 
     fun addFavorite(page: WikiPage){
-        databaseHelper.use {
-            insert(TABLE_NAME,
+        page.categories?.forEach{
+            it.title = it.title?.replace("Category:","")
+
+            databaseHelper.use {
+                insert(TABLE_NAME,
                     "id" to page.pageid,
                     "title" to page.title,
                     "url" to page.fullurl,
-                    "thumbnailJson" to Gson().toJson(page.thumbnail))
+                    "thumbnailJson" to Gson().toJson(page.thumbnail),
+                    "category" to Gson().toJson(it))
+            }
         }
     }
 
@@ -31,12 +38,15 @@ class HistoryRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
     fun getAllHistory() : ArrayList<WikiPage> {
         var pages = ArrayList<WikiPage>()
 
-        val articleRowParser = rowParser { id: Int, title: String, url: String, thumbnailJson: String ->
+        val articleRowParser = rowParser { id: Int, title: String, url: String, thumbnailJson: String, categoriesJson:String ->
             val page = WikiPage()
             page.title = title
             page.pageid = id
             page.fullurl = url
             page.thumbnail = Gson().fromJson(thumbnailJson, WikiThumbnail::class.java)
+
+            Log.i("thumbnailJson", thumbnailJson)
+            Log.i("categoriesJson", categoriesJson)
 
             pages.add(page)
         }

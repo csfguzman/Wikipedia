@@ -13,12 +13,17 @@ class FavoritesRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
     private val TABLE_NAME: String = "Favorites"
 
     fun addFavorite(page: WikiPage){
-        databaseHelper.use {
-            insert(TABLE_NAME,
+        page.categories?.forEach{
+            it.title = it.title?.replace("Category:","")
+
+            databaseHelper.use {
+                insert(TABLE_NAME,
                     "id" to page.pageid,
                     "title" to page.title,
                     "url" to page.fullurl,
-                    "thumbnailJson" to Gson().toJson(page.thumbnail))
+                    "thumbnailJson" to Gson().toJson(page.thumbnail),
+                    "category" to Gson().toJson(it))
+            }
         }
     }
 

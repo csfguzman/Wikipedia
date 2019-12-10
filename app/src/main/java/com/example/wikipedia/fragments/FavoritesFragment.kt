@@ -7,13 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import com.example.wikipedia.R
 import com.example.wikipedia.WikiApplication
 import com.example.wikipedia.adapters.ArticleCardRecyclerAdapter
+import com.example.wikipedia.databinding.FragmentFavoritesBinding
 import com.example.wikipedia.managers.WikiManager
 import com.example.wikipedia.models.WikiPage
 import org.jetbrains.anko.doAsync
@@ -23,8 +23,9 @@ import org.jetbrains.anko.doAsync
  */
 class FavoritesFragment : Fragment() {
 
+    private lateinit var binding: FragmentFavoritesBinding
+
     private var wikiManager: WikiManager? = null
-    var favoritesRecyler: RecyclerView? = null
     private val adapter: ArticleCardRecyclerAdapter = ArticleCardRecyclerAdapter()
 
     override fun onAttach(context: Context?) {
@@ -34,15 +35,14 @@ class FavoritesFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val view = inflater!!.inflate(R.layout.fragment_favorites, container, false)
 
-        favoritesRecyler = view.findViewById<RecyclerView>(R.id.favorites_article_recycler);
-        favoritesRecyler!!.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        favoritesRecyler!!.adapter = adapter
+        binding = DataBindingUtil.inflate<FragmentFavoritesBinding>(inflater,
+            R.layout.fragment_favorites,container,false)
 
+        binding.favoritesArticleRecycler!!.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        binding.favoritesArticleRecycler!!.adapter = adapter
 
-        return view
+        return binding.root
     }
 
     override fun onResume(){

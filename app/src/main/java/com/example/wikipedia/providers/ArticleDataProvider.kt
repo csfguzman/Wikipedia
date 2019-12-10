@@ -1,9 +1,11 @@
 package com.example.wikipedia.providers
+import android.util.Log
 import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.core.ResponseDeserializable
 import com.github.kittinunf.fuel.httpGet
 import com.google.gson.Gson
 import com.example.wikipedia.models.Urls
+import com.example.wikipedia.models.WikiPage
 import com.example.wikipedia.models.WikiResult
 import java.io.Reader
 
@@ -34,9 +36,9 @@ class ArticleDataProvider {
                     if(response.statusCode != 200){
                         throw Exception("Unable to get articles")
                     }
+
                     val(data, _) = result
                     responseHandler.invoke(data as WikiResult)
-
                 }
     }
 
