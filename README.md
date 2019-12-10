@@ -11,7 +11,7 @@
 ## What is the Wiki App?
 * The wiki app is an extension of the wikipedia webpage 
 
-## Wiki App Functionalities
+## Wiki App Main Functionalities
 * Search articles
 * Favorite artices
 * Recieve push notifications
@@ -19,6 +19,7 @@
 * Text to speech
 
 ## Search Bar
+* Users will be able to search up specific articles
 * As the user are typing in the article, they will be given sugesstions of the possible article they are looking for
 
 ## Favorites
@@ -38,4 +39,4 @@
 * User may enable text to speech to listen to the artice instead of reading it themselves
 
 ## Sources
-[Connecting Firebase to Android App](https://firebase.google.com/docs/android/setup?authuser=0#console) 
+- [Connecting Firebase to Android App](https://firebase.google.com/docs/android/setup?authuser=0#console) 
