@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import com.example.wikipedia.R
 import com.example.wikipedia.WikiApplication
@@ -51,7 +52,7 @@ class ExploreFragment : Fragment() {
         }
 
 
-        binding.exploreArticleRecycler!!.layoutManager = LinearLayoutManager(context)
+        binding.exploreArticleRecycler!!.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)//LinearLayoutManager(context)
         binding.exploreArticleRecycler!!.adapter = adapter
 
 
