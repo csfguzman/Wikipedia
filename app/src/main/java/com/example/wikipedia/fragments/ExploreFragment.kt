@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.wikipedia.R
@@ -18,11 +19,17 @@ import com.example.wikipedia.activities.SearchActivity
 import com.example.wikipedia.adapters.ArticleCardRecyclerAdapter
 import com.example.wikipedia.databinding.FragmentExploreBinding
 import com.example.wikipedia.managers.WikiManager
+import com.example.wikipedia.models.WikiResult
+import kotlinx.coroutines.*
+import org.jetbrains.anko.custom.async
+import org.jetbrains.anko.doAsync
+import kotlin.coroutines.CoroutineContext
 
 /**
  * A simple [Fragment] subclass.
  */
 class ExploreFragment : Fragment() {
+
 
     private var wikiManager: WikiManager? = null
     var adapter: ArticleCardRecyclerAdapter = ArticleCardRecyclerAdapter()
@@ -47,17 +54,19 @@ class ExploreFragment : Fragment() {
             context?.startActivity(searchIntent)
         }
 
-
         binding.exploreArticleRecycler!!.layoutManager = LinearLayoutManager(context)
         binding.exploreArticleRecycler!!.adapter = adapter
 
 
-
         binding.refresher?.setOnRefreshListener {
-            getArticles()
+            lifecycleScope.launch {
+                getArticles()
+            }
         }
 
-        getArticles()
+        lifecycleScope.launch {
+            getArticles()
+        }
 
         return binding.root
     }
@@ -68,8 +77,10 @@ class ExploreFragment : Fragment() {
         try{
 
             wikiManager?.getRandom(15, { wikiResult ->
+
                 adapter.currentResults.clear()
                 adapter.currentResults.addAll(wikiResult.query!!.pages)
+
                 activity?.runOnUiThread {
                     adapter.notifyDataSetChanged()
                     binding.refresher?.isRefreshing = false
