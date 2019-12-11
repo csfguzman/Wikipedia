@@ -1,5 +1,7 @@
 package com.example.wikipedia.models
 
+import android.util.Log
+
 object Urls {
     val BaseUrl = "https://en.wikipedia.org/w/api.php"
 
@@ -10,7 +12,7 @@ object Urls {
                 "&gpssearch=$term" +
                 "&gpslimit=$take" +
                 "&gpsoffset=$skip" +
-                "&prop=pageimages|info" +
+                "&prop=pageimages|info|categories" +
                 "&piprop=thumbnail|url" +
                 "&pithumbsize=200" +
                 "&pilimit=$take" +
@@ -20,12 +22,22 @@ object Urls {
     }
 
     fun getRandomUrl(take: Int) : String{
+        Log.i("url", BaseUrl + "?action=query" +
+                "&format=json" +
+                "&formatversion=2" +
+                "&generator=random" +
+                "&grnnamespace=0" +
+                "&prop=pageimages|info|categories" +
+                "&grnlimit=$take" +
+                "&inprop=url" +
+                "&pithumbsize=200")
+
         return BaseUrl + "?action=query" +
                 "&format=json" +
                 "&formatversion=2" +
                 "&generator=random" +
                 "&grnnamespace=0" +
-                "&prop=pageimages|info" +
+                "&prop=pageimages|info|categories" +
                 "&grnlimit=$take" +
                 "&inprop=url" +
                 "&pithumbsize=200"

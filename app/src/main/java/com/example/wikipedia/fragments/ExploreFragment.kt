@@ -5,12 +5,12 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.wikipedia.R
@@ -19,17 +19,11 @@ import com.example.wikipedia.activities.SearchActivity
 import com.example.wikipedia.adapters.ArticleCardRecyclerAdapter
 import com.example.wikipedia.databinding.FragmentExploreBinding
 import com.example.wikipedia.managers.WikiManager
-import com.example.wikipedia.models.WikiResult
-import kotlinx.coroutines.*
-import org.jetbrains.anko.custom.async
-import org.jetbrains.anko.doAsync
-import kotlin.coroutines.CoroutineContext
 
 /**
  * A simple [Fragment] subclass.
  */
 class ExploreFragment : Fragment() {
-
 
     private var wikiManager: WikiManager? = null
     var adapter: ArticleCardRecyclerAdapter = ArticleCardRecyclerAdapter()
@@ -54,19 +48,17 @@ class ExploreFragment : Fragment() {
             context?.startActivity(searchIntent)
         }
 
+
         binding.exploreArticleRecycler!!.layoutManager = LinearLayoutManager(context)
         binding.exploreArticleRecycler!!.adapter = adapter
 
 
-        binding.refresher?.setOnRefreshListener {
-            lifecycleScope.launch {
-                getArticles()
-            }
-        }
 
-        lifecycleScope.launch {
+        binding.refresher?.setOnRefreshListener {
             getArticles()
         }
+
+        getArticles()
 
         return binding.root
     }
@@ -77,10 +69,14 @@ class ExploreFragment : Fragment() {
         try{
 
             wikiManager?.getRandom(15, { wikiResult ->
-
                 adapter.currentResults.clear()
                 adapter.currentResults.addAll(wikiResult.query!!.pages)
 
+                wikiResult.query!!.pages.get(0).categories?.forEach{
+                    Log.i("currentCategory", it.title)
+                }
+
+//                Log.i("categoryTotal", wikiResult.query!!.pages.get(0).categories?.get(0)?.title)
                 activity?.runOnUiThread {
                     adapter.notifyDataSetChanged()
                     binding.refresher?.isRefreshing = false
