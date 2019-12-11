@@ -51,6 +51,10 @@ class HistoryRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
             pages.add(page)
         }
 
+        databaseHelper.use {
+            select(TABLE_NAME).parseList(articleRowParser)
+        }
+
         return pages
     }
 }

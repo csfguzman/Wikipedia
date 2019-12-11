@@ -10,6 +10,7 @@ import com.example.wikipedia.repositories.HistoryRepository
 class WikiManager(private val provider: ArticleDataProvider,
                   private val favoritesRepository: FavoritesRepository,
                   private val historyRepository: HistoryRepository) {
+
     private var favoritesCache: ArrayList<WikiPage>? = null
     private var historyCache: ArrayList<WikiPage>? = null
 
