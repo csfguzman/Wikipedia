@@ -5,8 +5,9 @@
 | Team Members | GitHub Username |
 | ------ | ------ |
 | Francisco Guzman | csfguzman |
-| Klaudia Hernandez | khern19 |
 | Andrew Garcia | agarcia94 |
+| Klaudia Hernandez | khern19 |
+
 
 # About The App
 
@@ -30,7 +31,7 @@
 
 ## Favorites
 
-![](img/favorite1.gif)
+![](img/favorite1.gif) 
 
 * Users will be able to favorite articles
 * favorites will be stored in a favorites tab
