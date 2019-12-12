@@ -20,7 +20,7 @@
 
 ## Search Bar
 
-![](searchbar.gif)
+![](img/searchbar.gif)
 
 * Users will be able to search up specific articles
 * As the user are typing in the article, they will be given sugesstions of the possible article they are looking for
@@ -36,11 +36,11 @@
 
 ## History
 
-![](history1.gif) 
+![](img/history1.gif) 
 * When clicking onto an article, it will be saved under the user's history tab
 
 
-![](history2.gif)
+![](img/history2.gif)
 * The user's history will still be saved even when they close the tab and reopen the app later
 * The user will be able to clear their viewing history
 
