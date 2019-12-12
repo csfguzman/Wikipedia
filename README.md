@@ -26,6 +26,9 @@
 * As the user are typing in the article, they will be given sugesstions of the possible article they are looking for
 
 ## Favorites
+
+![](img/favorite1.png)
+
 * Users will be able to favorite articles
 * favorites will be stored in a favorites tab
 * favorites will be stored into the database
