@@ -38,6 +38,8 @@
 * When clicking onto an article it will be saved into the user's history
 * The user will be able to delete their history
 
+![](history1.gif)
+
 ## Text to Speech
 * User may enable text to speech to listen to the artice instead of reading it themselves
 
