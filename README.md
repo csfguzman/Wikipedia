@@ -35,10 +35,14 @@
 * Based on favorites, users will recieve notifications of articles that are similar that they might like
 
 ## History
-* When clicking onto an article it will be saved into the user's history
-* The user will be able to delete their history
 
-![](history1.gif)
+![](history1.gif) 
+* When clicking onto an article, it will be saved under the user's history tab
+
+
+![](history2.gif)
+* The user's history will still be saved even when they close the tab and reopen the app later
+* The user will be able to clear their viewing history
 
 ## Text to Speech
 * User may enable text to speech to listen to the artice instead of reading it themselves
