@@ -36,7 +36,9 @@
 
 ## History
 
-![](history1.gif) ![](history2.gif)
+![](history1.gif) 
+
+![](history2.gif)
 
 * When clicking onto an article it will be saved into the user's history
 * The user will be able to delete their history
