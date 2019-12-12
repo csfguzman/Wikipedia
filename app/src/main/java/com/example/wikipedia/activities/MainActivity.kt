@@ -1,20 +1,19 @@
 package com.example.wikipedia.activities
 
+
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-
-
 import com.example.wikipedia.R
 import com.example.wikipedia.databinding.ActivityMainBinding
 import com.example.wikipedia.fragments.ExploreFragment
 import com.example.wikipedia.fragments.FavoritesFragment
 import com.example.wikipedia.fragments.HistoryFragment
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.navView.setupWithNavController(navController)
+
 
 
 

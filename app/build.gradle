@@ -61,7 +61,6 @@ dependencies {
 
 
 
-
     // Anko
     implementation 'org.jetbrains.anko:anko-sqlite:0.10.1'
     implementation 'org.jetbrains.anko:anko-common:0.10.1'
