@@ -1,4 +1,5 @@
-# Wiki App
+
+![](img/logo.png)
 
 #### Group: Random Name Generator
 
