@@ -19,6 +19,9 @@
 * Text to speech
 
 ## Search Bar
+
+![](searchbar.gif)
+
 * Users will be able to search up specific articles
 * As the user are typing in the article, they will be given sugesstions of the possible article they are looking for
 
