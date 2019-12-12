@@ -8,7 +8,7 @@
 | Klaudia Hernandez | khern19 |
 | Andrew Garcia | agarcia94 |
 
-
+# About The App
 
 > The Wiki App is an exstenion of the Wikipedia webpage but this time users
 > can access it through one click of a button. In this mobile application 
