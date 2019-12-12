@@ -8,15 +8,18 @@
 | Klaudia Hernandez | khern19 |
 | Andrew Garcia | agarcia94 |
 
-## What is the Wiki App?
-* The wiki app is an extension of the wikipedia webpage 
 
-## Wiki App Main Functionalities
-* Search articles
-* Favorite artices
-* Recieve push notifications
-* View history
-* Text to speech
+
+> The Wiki App is an exstenion of the Wikipedia webpage but this time users
+> can access it through one click of a button. In this mobile application 
+> users will be able to read articles and even listen to them if they decide 
+> to use the text to speech function. Users will also be able to favorite 
+> articels if they wish to save it for later, and unfavorite articles if the 
+> change their mind or don't need it anymore. Then based on these favorites, 
+> the user will recieve push notifications of recommened articles. In the app
+> also, when users click on articles they will be saved to their history but 
+> can always be cleared when wanted. Lastly, if the user already know what 
+> article they will like to see,they can always search it up within the app.
 
 ## Search Bar
 
