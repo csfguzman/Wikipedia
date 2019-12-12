@@ -15,17 +15,25 @@ class HistoryRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
     private val TABLE_NAME: String = "History"
 
     fun addFavorite(page: WikiPage){
-        page.categories?.forEach{
-            it.title = it.title?.replace("Category:","")
+//        page.categories?.forEach{
+//            it.title = it.title?.replace("Category:","")
+//
+//            databaseHelper.use {
+//                insert(TABLE_NAME,
+//                    "id" to page.pageid,
+//                    "title" to page.title,
+//                    "url" to page.fullurl,
+//                    "thumbnailJson" to Gson().toJson(page.thumbnail),
+//                    "category" to Gson().toJson(it))
+//            }
+//        }
 
-            databaseHelper.use {
-                insert(TABLE_NAME,
-                    "id" to page.pageid,
-                    "title" to page.title,
-                    "url" to page.fullurl,
-                    "thumbnailJson" to Gson().toJson(page.thumbnail),
-                    "category" to Gson().toJson(it))
-            }
+        databaseHelper.use {
+            insert(TABLE_NAME,
+                "id" to page.pageid,
+                "title" to page.title,
+                "url" to page.fullurl,
+                "thumbnailJson" to Gson().toJson(page.thumbnail))
         }
     }
 
@@ -38,17 +46,21 @@ class HistoryRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
     fun getAllHistory() : ArrayList<WikiPage> {
         var pages = ArrayList<WikiPage>()
 
-        val articleRowParser = rowParser { id: Int, title: String, url: String, thumbnailJson: String, categoriesJson:String ->
+        val articleRowParser = rowParser { id: Int, title: String, url: String, thumbnailJson: String ->
             val page = WikiPage()
             page.title = title
             page.pageid = id
             page.fullurl = url
             page.thumbnail = Gson().fromJson(thumbnailJson, WikiThumbnail::class.java)
 
-            Log.i("thumbnailJson", thumbnailJson)
-            Log.i("categoriesJson", categoriesJson)
+//            Log.i("thumbnailJson", thumbnailJson)
+//            Log.i("categoriesJson", categoriesJson)
 
             pages.add(page)
+        }
+
+        databaseHelper.use {
+            select(TABLE_NAME).parseList(articleRowParser)
         }
 
         return pages

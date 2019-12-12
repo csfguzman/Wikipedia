@@ -39,7 +39,7 @@ class FavoritesFragment : Fragment() {
         binding = DataBindingUtil.inflate<FragmentFavoritesBinding>(inflater,
             R.layout.fragment_favorites,container,false)
 
-        binding.favoritesArticleRecycler!!.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        binding.favoritesArticleRecycler!!.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)//StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.favoritesArticleRecycler!!.adapter = adapter
 
         return binding.root

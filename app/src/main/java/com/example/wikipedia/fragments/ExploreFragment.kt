@@ -11,7 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import com.example.wikipedia.R
 import com.example.wikipedia.WikiApplication
@@ -19,6 +21,7 @@ import com.example.wikipedia.activities.SearchActivity
 import com.example.wikipedia.adapters.ArticleCardRecyclerAdapter
 import com.example.wikipedia.databinding.FragmentExploreBinding
 import com.example.wikipedia.managers.WikiManager
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass.
@@ -49,16 +52,20 @@ class ExploreFragment : Fragment() {
         }
 
 
-        binding.exploreArticleRecycler!!.layoutManager = LinearLayoutManager(context)
+        binding.exploreArticleRecycler!!.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)//LinearLayoutManager(context)
         binding.exploreArticleRecycler!!.adapter = adapter
 
 
 
         binding.refresher?.setOnRefreshListener {
-            getArticles()
+            lifecycleScope.launch {
+                getArticles()
+            }
         }
 
-        getArticles()
+        lifecycleScope.launch {
+            getArticles()
+        }
 
         return binding.root
     }
