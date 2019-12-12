@@ -19,6 +19,9 @@
 * Text to speech
 
 ## Search Bar
+
+![](img/searchbar.gif)
+
 * Users will be able to search up specific articles
 * As the user are typing in the article, they will be given sugesstions of the possible article they are looking for
 
@@ -32,8 +35,15 @@
 * Based on favorites, users will recieve notifications of articles that are similar that they might like
 
 ## History
-* When clicking onto an article it will be saved into the user's history
-* The user will be able to delete their history
+
+![](img/history1.gif) 
+* When clicking onto an article, it will be saved under the user's history tab
+
+
+![](img/history2.gif)
+* The user's history will still be saved even when they close the tab and reopen the app later
+* The user will be able to clear their viewing history
+
 
 ## Text to Speech
 * User may enable text to speech to listen to the artice instead of reading it themselves
