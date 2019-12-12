@@ -197,6 +197,7 @@ class ArticleDetailActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
                 }
             }
             catch (ex: Exception){
+                Log.i("ex.toString(): ", ex.toString())
                 toast("Unable to update this article.")
             }
         }

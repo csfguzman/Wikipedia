@@ -6,8 +6,9 @@ import org.jetbrains.anko.db.*
 import org.jetbrains.anko.db.ManagedSQLiteOpenHelper
 import org.jetbrains.anko.db.createTable
 
-class ArticleDatabaseOpenHelper(context: Context) : ManagedSQLiteOpenHelper(context, "ArticlesDatabase.db", null, 1) {
+class ArticleDatabaseOpenHelper(context: Context) : ManagedSQLiteOpenHelper(context, "ArticlesDatabase.db", null, 2) {
     override fun onCreate(db: SQLiteDatabase?) {
+
         // define the tables in this database
         db?.createTable("Favorites", true,
             "id" to INTEGER,
@@ -21,7 +22,6 @@ class ArticleDatabaseOpenHelper(context: Context) : ManagedSQLiteOpenHelper(cont
             "title" to TEXT,
             "url" to TEXT,
             "thumbnailJson" to TEXT)
-            //,"category" to TEXT)
 
     }
 
