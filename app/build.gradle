@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -21,7 +23,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    
+
     dataBinding {
         enabled = true
     }
@@ -54,6 +56,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.2.1'
     // Firebase SDK for Google Cloud Messaging
     implementation 'com.google.firebase:firebase-messaging:20.0.1'
+    // Firebase SDK for Google Database
+    implementation 'com.google.firebase:firebase-database:19.2.0'
+
+
 
 
     // Anko
@@ -66,4 +72,3 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha02"
 }
-apply plugin: 'com.google.gms.google-services'
