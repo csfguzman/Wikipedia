@@ -35,10 +35,11 @@
 * Based on favorites, users will recieve notifications of articles that are similar that they might like
 
 ## History
+
+![](history1.gif) ![](history2.gif)
+
 * When clicking onto an article it will be saved into the user's history
 * The user will be able to delete their history
-
-![](history1.gif)
 
 ## Text to Speech
 * User may enable text to speech to listen to the artice instead of reading it themselves
