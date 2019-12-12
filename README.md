@@ -5,8 +5,9 @@
 | Team Members | GitHub Username |
 | ------ | ------ |
 | Francisco Guzman | csfguzman |
-| Klaudia Hernandez | khern19 |
 | Andrew Garcia | agarcia94 |
+| Klaudia Hernandez | khern19 |
+
 
 ## What is the Wiki App?
 * The wiki app is an extension of the wikipedia webpage 
