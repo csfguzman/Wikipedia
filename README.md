@@ -27,7 +27,7 @@
 
 ## Favorites
 
-![](img/favorite1.png)
+![](img/favorite1.gif)
 
 * Users will be able to favorite articles
 * favorites will be stored in a favorites tab
