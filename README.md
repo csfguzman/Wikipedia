@@ -24,8 +24,7 @@
 
 
 ## Text to Speech
-![](img/speak.png) 
-When clicking on an article, users will see a speak button on the left hand side above the article. When users click on that button, the article will be read out loud to them.
+- When clicking on an article, users will see a speak button on the left hand side above the article. When users click on that button, the article will be read out loud to them.
 
 
 ## Favorites
