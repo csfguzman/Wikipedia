@@ -207,21 +207,36 @@ class ArticleDetailActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
                     wikiManager!!.removeFavorite(currentPage!!.pageid!!)
                     toast("Article removed from favorites")
 
-                    var firstCategory: Category = currentPage?.categories?.get(0)!!
-                    firstCategory.title = firstCategory.title?.replace("Category:","")
+                    if(!currentPage?.categories.isNullOrEmpty()){
+                        var firstCategory: Category = currentPage?.categories?.get(0)!!
+                        firstCategory.title = firstCategory.title?.replace("Category:","")
 
-                    FirebaseMessaging.getInstance().unsubscribeFromTopic(firstCategory.title!!)
-                        .addOnCompleteListener { task ->
+                        val stringParts:List<String> = firstCategory.title?.split(" ")!!
+                        var topicToUnsubscribeFrom: String = ""
 
-                            var msg = getString(R.string.msg_unsubscribed, firstCategory.title)
-                            if (!task.isSuccessful) {
-                                msg = getString(R.string.msg_unsubscribe_failed, firstCategory.title)
+                        for(i in 0 until stringParts.size){
+                            if(i != stringParts.size -1){
+                                topicToUnsubscribeFrom += stringParts.get(i) + "-"
                             }
-                            Log.d("unsubscriptionResult", msg)
-//                                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                            toast(msg)
+                            else{
+                                topicToUnsubscribeFrom += stringParts.get(i)
+                            }
                         }
 
+                        Log.i("unsubscribeCategory", topicToUnsubscribeFrom)
+
+                        FirebaseMessaging.getInstance().unsubscribeFromTopic(topicToUnsubscribeFrom)
+                            .addOnCompleteListener { task ->
+
+                                var msg = getString(R.string.msg_unsubscribed, firstCategory.title)
+                                if (!task.isSuccessful) {
+                                    msg = getString(R.string.msg_unsubscribe_failed, firstCategory.title)
+                                }
+                                Log.d("unsubscriptionResult", msg)
+//                                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                                toast(msg)
+                            }
+                    }
                 }
                 else{
                     wikiManager!!.addFavorite(currentPage!!)
@@ -235,7 +250,22 @@ class ArticleDetailActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
                         // derived from https://firebase.google.com/docs/cloud-messaging/android/topic-messaging
                         Log.i("subscriptionAttempt", "Subscribing to ${firstCategory.title}")
 
-                        FirebaseMessaging.getInstance().subscribeToTopic(firstCategory.title!!)
+                        val stringParts:List<String> = firstCategory.title?.split(" ")!!
+                        var topicToSubscribeTo: String = ""
+
+                        for(i in 0 until stringParts.size){
+                            if(i != stringParts.size -1){
+                                topicToSubscribeTo += stringParts.get(i) + "-"
+                            }
+                            else{
+                                topicToSubscribeTo += stringParts.get(i)
+                            }
+                        }
+
+                        Log.i("subscribeCategory", topicToSubscribeTo)
+
+
+                        FirebaseMessaging.getInstance().subscribeToTopic(topicToSubscribeTo)
                             .addOnCompleteListener { task ->
 
                                 var msg = getString(R.string.msg_subscribed, firstCategory.title)
@@ -250,8 +280,8 @@ class ArticleDetailActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
                 }
             }
             catch (ex: Exception){
-                Log.i("exception", ex.stackTrace.toString())
-                Log.i("ex.toString(): ", ex.toString())
+                Log.i("exception", ex.toString())
+                print(ex.printStackTrace())
                 toast("Unable to update this article.")
             }
         }

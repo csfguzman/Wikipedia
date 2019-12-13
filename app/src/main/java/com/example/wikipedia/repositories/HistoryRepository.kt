@@ -15,26 +15,28 @@ class HistoryRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
     private val TABLE_NAME: String = "History"
 
     fun addFavorite(page: WikiPage){
-//        page.categories?.forEach{
-//            it.title = it.title?.replace("Category:","")
-//
-//            databaseHelper.use {
-//                insert(TABLE_NAME,
-//                    "id" to page.pageid,
-//                    "title" to page.title,
-//                    "url" to page.fullurl,
-//                    "thumbnailJson" to Gson().toJson(page.thumbnail),
-//                    "category" to Gson().toJson(it))
-//            }
-//        }
+        page.categories?.forEach{
+            it.title = it.title?.replace("Category:","")
 
-        databaseHelper.use {
-            insert(TABLE_NAME,
-                "id" to page.pageid,
-                "title" to page.title,
-                "url" to page.fullurl,
-                "thumbnailJson" to Gson().toJson(page.thumbnail))
+            databaseHelper.use {
+                insert(TABLE_NAME,
+                    "id" to page.pageid,
+                    "title" to page.title,
+                    "url" to page.fullurl,
+                    "thumbnailJson" to Gson().toJson(page.thumbnail),
+                    "category" to Gson().toJson(it))
+            }
+
+            return
         }
+
+//        databaseHelper.use {
+//            insert(TABLE_NAME,
+//                "id" to page.pageid,
+//                "title" to page.title,
+//                "url" to page.fullurl,
+//                "thumbnailJson" to Gson().toJson(page.thumbnail))
+//        }
     }
 
     fun removePageById(pageId: Int){
@@ -46,12 +48,21 @@ class HistoryRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
     fun getAllHistory() : ArrayList<WikiPage> {
         var pages = ArrayList<WikiPage>()
 
-        val articleRowParser = rowParser { id: Int, title: String, url: String, thumbnailJson: String ->
+        val articleRowParser = rowParser { id: Int, title: String, url: String, thumbnailJson: String, category: String? ->
             val page = WikiPage()
             page.title = title
             page.pageid = id
             page.fullurl = url
             page.thumbnail = Gson().fromJson(thumbnailJson, WikiThumbnail::class.java)
+
+            if(category != null){
+                val pageCategory:Category = Gson().fromJson(category,Category::class.java)
+                var categories: ArrayList<Category>? = arrayListOf()
+                categories?.add(pageCategory)
+
+                page.categories = categories
+            }
+
 
 //            Log.i("thumbnailJson", thumbnailJson)
 //            Log.i("categoriesJson", categoriesJson)

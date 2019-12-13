@@ -17,9 +17,8 @@ class FavoritesRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
     private val TABLE_NAME: String = "Favorites"
 
     fun addFavorite(page: WikiPage){
-        if(!page.categories.isNullOrEmpty()){
-            val firstCategory: Category = page?.categories?.get(0)!!
-            firstCategory.title = firstCategory.title?.replace("Category:","")
+        page.categories?.forEach{
+            it.title = it.title?.replace("Category:","")
 
             databaseHelper.use {
                 insert(TABLE_NAME,
@@ -27,33 +26,37 @@ class FavoritesRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
                     "title" to page.title,
                     "url" to page.fullurl,
                     "thumbnailJson" to Gson().toJson(page.thumbnail),
-                    "category" to Gson().toJson(firstCategory))
+                    "category" to Gson().toJson(it))
             }
 
-//            page.categories?.forEach{
-//                it.title = it.title?.replace("Category:","")
+            return
+        }
+//        if(!page.categories.isNullOrEmpty()){
+//            Log.i("notNull", "right here")
+//            val firstCategory: Category = page?.categories?.get(0)!!
+//            firstCategory.title = firstCategory.title?.replace("Category:","")
 //
-//                databaseHelper.use {
-//                    insert(TABLE_NAME,
-//                        "id" to page.pageid,
-//                        "title" to page.title,
-//                        "url" to page.fullurl,
-//                        "thumbnailJson" to Gson().toJson(page.thumbnail),
-//                        "category" to Gson().toJson(it))
-//                }
+//            databaseHelper.use {
+//                insert(TABLE_NAME,
+//                    "id" to page.pageid,
+//                    "title" to page.title,
+//                    "url" to page.fullurl,
+//                    "thumbnailJson" to Gson().toJson(page.thumbnail),
+//                    "category" to Gson().toJson(firstCategory))
 //            }
-        }
-        else{
-            databaseHelper.use {
-                insert(TABLE_NAME,
-                    "id" to page.pageid,
-                    "title" to page.title,
-                    "url" to page.fullurl,
-                    "thumbnailJson" to Gson().toJson(page.thumbnail))
-            }
-
-
-        }
+//        }
+//        else{
+//            Log.i("isNull","yah")
+//            databaseHelper.use {
+//                insert(TABLE_NAME,
+//                    "id" to page.pageid,
+//                    "title" to page.title,
+//                    "url" to page.fullurl,
+//                    "thumbnailJson" to Gson().toJson(page.thumbnail))
+//            }
+//
+//
+//        }
     }
 
     fun removeFavoriteById(pageId: Int){
@@ -73,12 +76,23 @@ class FavoritesRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
     fun getAllFavorites() : ArrayList<WikiPage> {
         var pages = ArrayList<WikiPage>()
 
-        val articleRowParser = rowParser { id: Int, title: String, url: String, thumbnailJson: String, category: String ->
+        val articleRowParser = rowParser { id: Int, title: String, url: String, thumbnailJson: String, category: String? ->
             val page = WikiPage()
             page.title = title
             page.pageid = id
             page.fullurl = url
             page.thumbnail = Gson().fromJson(thumbnailJson, WikiThumbnail::class.java)
+
+            if(category != null){
+                val pageCategory:Category = Gson().fromJson(category,Category::class.java)
+                var categories: ArrayList<Category>? = arrayListOf()
+                categories?.add(pageCategory)
+
+                page.categories = categories
+            }
+
+            Log.i("thumbnailJson", thumbnailJson)
+            Log.i("category", category)
 
             pages.add(page)
         }
