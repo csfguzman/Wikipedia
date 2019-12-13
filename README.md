@@ -31,25 +31,23 @@
 
 ![](img/favorites.gif) 
 
-* Users will be able to favorite articles
-* favorites will be stored in a favorites tab
-* favorites will be stored into the database
-* Users will be able unfavorite articles
+* Users shall be able to favorite articles
 
 ## Push Notifications
-* Based on favorites, users will recieve notifications of articles that are similar that they might like
+* Based on on a user's currents favorites, they will recieve a push notification of a recommended article through Firebase
 
 ## History
 
 ![](img/history.gif) 
-* When clicking onto an article, it will be saved under the user's history tab
-* The user's history will still be saved even when they close the tab and reopen the app later
-* The user will be able to clear their viewing history
+* When viewing different articles, those articles will be saved under the user's history tab
+* If users wish, they can clear there history whenever they would like
+* Benetifits of saving the user's history is that if accidently the user exits an article or they want to refrence back an article that they read awhile back but can't really remember much info to search it up, then they can go through their history to look for the article
 
 ## Search Bar
 
-![](img/searchbar.gif)Users will be able to search up specific articles
-* As the user are typing in the article, they will be given sugesstions of the possible article they are looking for
+![](img/searchbar.gif)
+- Users will be able to search up specific articles
+- when searching up an article thst isn't specific, also articles that contain the words searched up will show up 
 
 ## Sources
 - [Connecting Firebase to Android App](https://firebase.google.com/docs/android/setup?authuser=0#console)
