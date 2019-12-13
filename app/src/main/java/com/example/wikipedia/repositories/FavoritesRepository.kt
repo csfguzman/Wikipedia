@@ -1,5 +1,6 @@
 package com.example.wikipedia.repositories
 
+import com.example.wikipedia.models.Category
 import com.example.wikipedia.models.WikiPage
 import com.example.wikipedia.models.WikiThumbnail
 import com.google.gson.Gson
@@ -13,8 +14,9 @@ class FavoritesRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
     private val TABLE_NAME: String = "Favorites"
 
     fun addFavorite(page: WikiPage){
-        page.categories?.forEach{
-            it.title = it.title?.replace("Category:","")
+        if(!page.categories.isNullOrEmpty()){
+            val firstCategory: Category = page?.categories?.get(0)!!
+            firstCategory.title = firstCategory.title?.replace("Category:","")
 
             databaseHelper.use {
                 insert(TABLE_NAME,
@@ -22,7 +24,29 @@ class FavoritesRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
                     "title" to page.title,
                     "url" to page.fullurl,
                     "thumbnailJson" to Gson().toJson(page.thumbnail),
-                    "category" to Gson().toJson(it))
+                    "category" to Gson().toJson(firstCategory))
+            }
+
+//            page.categories?.forEach{
+//                it.title = it.title?.replace("Category:","")
+//
+//                databaseHelper.use {
+//                    insert(TABLE_NAME,
+//                        "id" to page.pageid,
+//                        "title" to page.title,
+//                        "url" to page.fullurl,
+//                        "thumbnailJson" to Gson().toJson(page.thumbnail),
+//                        "category" to Gson().toJson(it))
+//                }
+//            }
+        }
+        else{
+            databaseHelper.use {
+                insert(TABLE_NAME,
+                    "id" to page.pageid,
+                    "title" to page.title,
+                    "url" to page.fullurl,
+                    "thumbnailJson" to Gson().toJson(page.thumbnail))
             }
         }
     }
