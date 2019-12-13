@@ -1,6 +1,9 @@
 package com.example.wikipedia.repositories
 
+
 import com.example.wikipedia.models.Category
+import android.util.Log
+
 import com.example.wikipedia.models.WikiPage
 import com.example.wikipedia.models.WikiThumbnail
 import com.google.gson.Gson
@@ -48,6 +51,8 @@ class FavoritesRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
                     "url" to page.fullurl,
                     "thumbnailJson" to Gson().toJson(page.thumbnail))
             }
+
+
         }
     }
 
@@ -68,7 +73,7 @@ class FavoritesRepository(val databaseHelper: ArticleDatabaseOpenHelper) {
     fun getAllFavorites() : ArrayList<WikiPage> {
         var pages = ArrayList<WikiPage>()
 
-        val articleRowParser = rowParser { id: Int, title: String, url: String, thumbnailJson: String ->
+        val articleRowParser = rowParser { id: Int, title: String, url: String, thumbnailJson: String, category: String ->
             val page = WikiPage()
             page.title = title
             page.pageid = id
