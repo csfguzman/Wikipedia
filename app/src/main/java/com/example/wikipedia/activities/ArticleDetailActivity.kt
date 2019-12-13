@@ -17,8 +17,10 @@ import com.example.wikipedia.R
 import com.example.wikipedia.WikiApplication
 import com.example.wikipedia.databinding.ActivityArticleDetailBinding
 import com.example.wikipedia.managers.WikiManager
+import com.example.wikipedia.models.Category
 import com.example.wikipedia.models.WikiPage
 import com.example.wikipedia.models.WikiResult
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_article_detail.*
 import kotlinx.coroutines.*
@@ -65,20 +67,14 @@ class ArticleDetailActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
         textToRead = ""
 
         currentPage = Gson().fromJson<WikiPage>(wikiPageJson, WikiPage::class.java)
+        Log.i("hasCategories", currentPage?.categories?.size.toString())
 
         activityJob = Job()
 
         //ioScope = CoroutineScope(Dispatchers.IO + activityJob)
         uiScope = CoroutineScope(Dispatchers.Main + activityJob)
 
-        uiScope.launch{
-            textToRead = extractTextFromPage()
 
-            if(textToRead.isNotEmpty() && ttsReady)
-                speakButton?.isEnabled = true
-
-            addHistory()
-        }
 
 
         supportActionBar?.title = currentPage?.title
@@ -91,6 +87,16 @@ class ArticleDetailActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
             }
 
         }
+
+        uiScope.launch{
+            textToRead = extractTextFromPage()
+
+            if(textToRead.isNotEmpty() && ttsReady)
+                speakButton?.isEnabled = true
+
+            addHistory()
+        }
+
 
         article_detail_webview.loadUrl(currentPage!!.fullurl)
 
@@ -118,6 +124,7 @@ class ArticleDetailActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
             var stringReturned = ""
 
             val doc:Document = Jsoup.connect(currentPage?.fullurl).get()
+            Log.i("parsedHTML", doc.toString())
 
             var pElements: Elements = doc.select("p")
             Log.i("elements", pElements.size.toString())
@@ -125,6 +132,11 @@ class ArticleDetailActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
             for (element in pElements) {
                 stringReturned = stringReturned + element.text()
             }
+
+            stringReturned = stringReturned.replace("\\[.*?\\]","")
+
+
+            Log.i("parsedHTMLString", stringReturned)
 
 //            if(stringReturned.isNotEmpty()){
 //                Toast.makeText(this@ArticleDetailActivity,"text to read good to go",Toast.LENGTH_SHORT)
@@ -135,8 +147,12 @@ class ArticleDetailActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
 
             stringReturned
         }
+    }
 
+    private suspend fun loadPage(webview: WebViewClient){
+        withContext(Dispatchers.IO){
 
+        }
     }
 
     private suspend fun addHistory(){
@@ -190,14 +206,82 @@ class ArticleDetailActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
                 if(wikiManager!!.getIsFavorite(currentPage!!.pageid!!)){
                     wikiManager!!.removeFavorite(currentPage!!.pageid!!)
                     toast("Article removed from favorites")
+
+                    if(!currentPage?.categories.isNullOrEmpty()){
+                        var firstCategory: Category = currentPage?.categories?.get(0)!!
+                        firstCategory.title = firstCategory.title?.replace("Category:","")
+
+                        val stringParts:List<String> = firstCategory.title?.split(" ")!!
+                        var topicToUnsubscribeFrom: String = ""
+
+                        for(i in 0 until stringParts.size){
+                            if(i != stringParts.size -1){
+                                topicToUnsubscribeFrom += stringParts.get(i) + "-"
+                            }
+                            else{
+                                topicToUnsubscribeFrom += stringParts.get(i)
+                            }
+                        }
+
+                        Log.i("unsubscribeCategory", topicToUnsubscribeFrom)
+
+                        FirebaseMessaging.getInstance().unsubscribeFromTopic(topicToUnsubscribeFrom)
+                            .addOnCompleteListener { task ->
+
+                                var msg = getString(R.string.msg_unsubscribed, firstCategory.title)
+                                if (!task.isSuccessful) {
+                                    msg = getString(R.string.msg_unsubscribe_failed, firstCategory.title)
+                                }
+                                Log.d("unsubscriptionResult", msg)
+//                                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                                toast(msg)
+                            }
+                    }
                 }
                 else{
                     wikiManager!!.addFavorite(currentPage!!)
                     toast("Article added to favorites")
+
+                    if(!currentPage?.categories.isNullOrEmpty()){
+
+                        var firstCategory: Category = currentPage?.categories?.get(0)!!
+                        firstCategory.title = firstCategory.title?.replace("Category:","")
+
+                        // derived from https://firebase.google.com/docs/cloud-messaging/android/topic-messaging
+                        Log.i("subscriptionAttempt", "Subscribing to ${firstCategory.title}")
+
+                        val stringParts:List<String> = firstCategory.title?.split(" ")!!
+                        var topicToSubscribeTo: String = ""
+
+                        for(i in 0 until stringParts.size){
+                            if(i != stringParts.size -1){
+                                topicToSubscribeTo += stringParts.get(i) + "-"
+                            }
+                            else{
+                                topicToSubscribeTo += stringParts.get(i)
+                            }
+                        }
+
+                        Log.i("subscribeCategory", topicToSubscribeTo)
+
+
+                        FirebaseMessaging.getInstance().subscribeToTopic(topicToSubscribeTo)
+                            .addOnCompleteListener { task ->
+
+                                var msg = getString(R.string.msg_subscribed, firstCategory.title)
+                                if (!task.isSuccessful) {
+                                    msg = getString(R.string.msg_subscribe_failed, firstCategory.title)
+                                }
+                                Log.d("subscriptionResult", msg)
+//                                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                                toast(msg)
+                            }
+                    }
                 }
             }
             catch (ex: Exception){
-                Log.i("ex.toString(): ", ex.toString())
+                Log.i("exception", ex.toString())
+                print(ex.printStackTrace())
                 toast("Unable to update this article.")
             }
         }

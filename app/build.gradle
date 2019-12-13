@@ -70,4 +70,12 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
 
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha02"
+
+    // Add the Firebase SDK for Google Analytics
+    implementation 'com.google.firebase:firebase-analytics:17.2.1'
+
+    // Add the SDK for Firebase Cloud Messaging
+    implementation 'com.google.firebase:firebase-messaging:20.1.0'
 }
+
+apply plugin: 'com.google.gms.google-services'
