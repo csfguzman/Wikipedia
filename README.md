@@ -31,7 +31,8 @@
 
 ![](img/favorites.gif) 
 
-* Users shall be able to favorite articles
+* Users shall be able to favorite and unfavorite articles
+* Benefits of being able to favorite is being able to save specific articles for later and if the user is done an no longer wishes to save it, the user can always unfavorite 
 
 ## Push Notifications
 * Based on on a user's currents favorites, they will recieve a push notification of a recommended article through Firebase
@@ -47,7 +48,7 @@
 
 ![](img/searchbar.gif)
 - Users will be able to search up specific articles
-- when searching up an article thst isn't specific, also articles that contain the words searched up will show up 
+- When searching up an article thst isn't specific, also articles that contain the words searched up will show up 
 
 ## Sources
 - [Connecting Firebase to Android App](https://firebase.google.com/docs/android/setup?authuser=0#console)
