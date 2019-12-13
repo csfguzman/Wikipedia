@@ -24,6 +24,9 @@
 
 
 ## Text to Speech
+
+![](img/speak.png)
+
 * User may enable text to speech to listen to the artice instead of reading it themselves
 
 
