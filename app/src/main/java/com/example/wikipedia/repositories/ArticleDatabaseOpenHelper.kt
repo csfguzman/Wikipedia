@@ -21,7 +21,8 @@ class ArticleDatabaseOpenHelper(context: Context) : ManagedSQLiteOpenHelper(cont
             "id" to INTEGER,
             "title" to TEXT,
             "url" to TEXT,
-            "thumbnailJson" to TEXT)
+            "thumbnailJson" to TEXT,
+            "category" to TEXT)
 
     }
 
