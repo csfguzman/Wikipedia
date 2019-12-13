@@ -24,7 +24,8 @@
 
 
 ## Text to Speech
-* User may enable text to speech to listen to the artice instead of reading it themselves
+![](img/speak.png) 
+When clicking on an article, users will see a speak button on the left hand side above the article. When users click on that button, the article will be read out loud to them.
 
 
 ## Favorites
@@ -48,9 +49,7 @@
 
 ## Search Bar
 
-![](img/searchbar.gif)
-
-* Users will be able to search up specific articles
+![](img/searchbar.gif)Users will be able to search up specific articles
 * As the user are typing in the article, they will be given sugesstions of the possible article they are looking for
 
 ## Sources
