@@ -57,4 +57,5 @@
 * User may enable text to speech to listen to the artice instead of reading it themselves
 
 ## Sources
-- [Connecting Firebase to Android App](https://firebase.google.com/docs/android/setup?authuser=0#console) 
+- [Connecting Firebase to Android App](https://firebase.google.com/docs/android/setup?authuser=0#console)
+- [Kotlin Text to Speech Reference](https://www.tutorialkart.com/kotlin-android/android-text-to-speech-kotlin-example/)
