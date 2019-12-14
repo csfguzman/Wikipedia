@@ -10,7 +10,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!-- The following two strings are derived from
+    <!-- The following strings until the end of the file are derived from
     https://github.com/firebase/quickstart-android/blob/master/messaging/app/src/main/res/values/strings.xml -->
     <string name="msg_subscribed">Subscribed to %1$s</string>
     <string name="msg_subscribe_failed">Failed to subscribe to %1$s</string>
