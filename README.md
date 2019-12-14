@@ -53,3 +53,4 @@
 ## Sources
 - [Connecting Firebase to Android App](https://firebase.google.com/docs/android/setup?authuser=0#console)
 - [Kotlin Text to Speech Reference](https://www.tutorialkart.com/kotlin-android/android-text-to-speech-kotlin-example/)
+- [Firebase Cloud Messaging Github Reference](https://github.com/firebase/quickstart-android/tree/d278e422b191506c18383fcbf7b0bd4b0f5fdcb4/messaging)
